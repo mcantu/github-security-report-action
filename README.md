@@ -45,9 +45,9 @@ You can specify a template by using the `template` parameter. Currently the foll
 
 ```
 name: Generate Security Report
-uses: peter-murray/github-security-report-action@v2
+uses: ctcampbell/github-security-report-action@v2
 with:
-  token: ${{ secrets.SECURITY_TOKEN }}
+  token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 Example summary report output:
