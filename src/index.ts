@@ -10,8 +10,6 @@ async function run(): Promise<void> {
 
     const generator = new ReportGenerator({
       repository: getRequiredInputValue('repository'),
-      octokit: new Octokit({auth: token}),
-      ref: getRequiredInputValue('ref'),
       octokit: new Octokit({auth: token, baseUrl: githubApiUrl}),
 
       sarifReportDirectory: getRequiredInputValue('sarifReportDir'),
