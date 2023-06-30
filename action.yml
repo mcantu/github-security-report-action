@@ -3,6 +3,11 @@ description: Generates security reports for a GitHub repository
 author: Peter Murray
 
 inputs:
+  githubApiUrl:
+    description: GitHub instance API URL. For example, https://github.example.com/api/v3
+    required: true
+    default: ${{ github.api_url }}
+
   token:
     description: GitHub Access Token with permissions for Dependencies and Security API access on the repository.
     required: true

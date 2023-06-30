@@ -6,10 +6,13 @@ import { Octokit } from '@octokit/rest';
 async function run(): Promise<void> {
   try {
     const token = getRequiredInputValue('token');
+    const githubApiUrl = getRequiredInputValue('githubApiUrl');
 
     const generator = new ReportGenerator({
       repository: getRequiredInputValue('repository'),
       octokit: new Octokit({auth: token}),
+      ref: getRequiredInputValue('ref'),
+      octokit: new Octokit({auth: token, baseUrl: githubApiUrl}),
 
       sarifReportDirectory: getRequiredInputValue('sarifReportDir'),
       outputDirectory: getRequiredInputValue('outputDir'),
