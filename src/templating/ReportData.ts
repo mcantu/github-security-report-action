@@ -223,13 +223,13 @@ export default class ReportData {
 
 function generateAggregatedAlertSummary(severityToAlertSummary: SeverityToAlertSummary): SeverityToAggregatedAlertSummary {
   const result: SeverityToAggregatedAlertSummary = {};
-  
+
   Object.entries(severityToAlertSummary).forEach((entry) => {
     const [severity, summaries] = entry;
     if(!result[severity]) {
       result[severity] = [];
     }
-    
+
     summaries.forEach((summary) => {
       let existingSummary = result[severity].find((candidate) => {
         return candidate.rule.id == summary.rule.id && candidate.state == summary.state;
@@ -253,7 +253,7 @@ function generateAggregatedAlertSummary(severityToAlertSummary: SeverityToAlertS
       }
     });
   });
-  
+
   return result;
 }
 
@@ -274,7 +274,8 @@ function generateAlertSummary(open: CodeScanningResults, rules: CodeScanningRule
       url: codeScanAlert.url,
       rule: {
         id: codeScanAlert.ruleId,
-      }
+      },
+      classifications: codeScanAlert.classifications,
     };
 
     if (matchedRule) {

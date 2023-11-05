@@ -179,6 +179,9 @@ class CodeScanningAlert {
     get toolVersion() {
         return this.data.tool ? this.data.tool.version : null;
     }
+    get classifications() {
+        return this.data.classifications;
+    }
 }
 exports["default"] = CodeScanningAlert;
 
@@ -1130,7 +1133,8 @@ function generateAlertSummary(open, rules) {
             url: codeScanAlert.url,
             rule: {
                 id: codeScanAlert.ruleId,
-            }
+            },
+            classifications: codeScanAlert.classifications
         };
         if (matchedRule) {
             summary.rule.details = matchedRule;
@@ -1792,8 +1796,8 @@ class OidcClient {
             const res = yield httpclient
                 .getJson(id_token_url)
                 .catch(error => {
-                throw new Error(`Failed to get ID Token. \n 
-        Error Code : ${error.statusCode}\n 
+                throw new Error(`Failed to get ID Token. \n
+        Error Code : ${error.statusCode}\n
         Error Message: ${error.result.message}`);
             });
             const id_token = (_a = res.result) === null || _a === void 0 ? void 0 : _a.value;
@@ -5856,7 +5860,7 @@ exports.Octokit = Octokit;
     };
     return makeCallback(0);
   };
-  
+
   var _isArray = Array.isArray || function(maybeArray){
     return Object.prototype.toString.call(maybeArray) === '[object Array]';
   };
@@ -16248,18 +16252,18 @@ function mkdirP (p, opts, f, made) {
     else if (!opts || typeof opts !== 'object') {
         opts = { mode: opts };
     }
-    
+
     var mode = opts.mode;
     var xfs = opts.fs || fs;
-    
+
     if (mode === undefined) {
         mode = _0777 & (~process.umask());
     }
     if (!made) made = null;
-    
+
     var cb = f || function () {};
     p = path.resolve(p);
-    
+
     xfs.mkdir(p, mode, function (er) {
         if (!er) {
             made = made || p;
@@ -16292,10 +16296,10 @@ mkdirP.sync = function sync (p, opts, made) {
     if (!opts || typeof opts !== 'object') {
         opts = { mode: opts };
     }
-    
+
     var mode = opts.mode;
     var xfs = opts.fs || fs;
-    
+
     if (mode === undefined) {
         mode = _0777 & (~process.umask());
     }
@@ -47324,7 +47328,7 @@ function unbzip2Stream() {
         }else{
             var bufsize = 100000 * blockSize;
             var buf = new Int32Array(bufsize);
-            
+
             var chunk = [];
             var f = function(b) {
                 chunk.push(b);
@@ -47446,11 +47450,11 @@ module.exports = function bitIterator(nextBuffer) {
 /***/ 363:
 /***/ ((module) => {
 
-/* 
+/*
   bzip2.js - a small bzip2 decompression implementation
-  
+
   Copyright 2011 by antimatter15 (antimatter15@gmail.com)
-  
+
   Based on micro-bunzip by Rob Landley (rob@landley.net).
 
   Copyright (c) 2011 by antimatter15 (antimatter15@gmail.com).
@@ -47461,10 +47465,10 @@ module.exports = function bitIterator(nextBuffer) {
   the rights to use, copy, modify, merge, publish, distribute, sublicense,
   and/or sell copies of the Software, and to permit persons to whom the
   Software is furnished to do so, subject to the following conditions:
-  
+
   The above copyright notice and this permission notice shall be included
   in all copies or substantial portions of the Software.
-  
+
   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
@@ -47479,7 +47483,7 @@ function Bzip2Error(message) {
     this.stack = (new Error()).stack;
 }
 Bzip2Error.prototype = new Error;
- 
+
 var message = {
     Error: function(message) {throw new Bzip2Error(message);}
 };
@@ -47578,16 +47582,16 @@ bzip2.array = function(bytes) {
     }
 }
 
-    
+
 bzip2.simple = function(srcbuffer, stream) {
     var bits = bzip2.array(srcbuffer);
     var size = bzip2.header(bits);
     var ret = false;
     var bufsize = 100000 * size;
     var buf = new Int32Array(bufsize);
-    
+
     do {
-        ret = bzip2.decompress(bits, stream, buf, bufsize);        
+        ret = bzip2.decompress(bits, stream, buf, bufsize);
     } while(!ret);
 }
 
@@ -47615,7 +47619,7 @@ bzip2.decompress = function(bits, stream, buf, bufsize, streamCRC) {
     var SYMBOL_RUNB = 1;
     var GROUP_SIZE = 50;
     var crc = 0 ^ (-1);
-    
+
     for(var h = '', i = 0; i < 6; i++) h += bits(8).toString(16);
     if (h == "177245385090") {
       var finalCRC = bits(32)|0;
@@ -47708,12 +47712,12 @@ bzip2.decompress = function(bits, stream, buf, bufsize, streamCRC) {
         base[minLen] = 0;
     }
 
-    for(var i = 0; i < 256; i++) { 
+    for(var i = 0; i < 256; i++) {
         this.mtfSymbol[i] = i;
         this.byteCount[i] = 0;
     }
     var runPos, count, symCount, selector;
-    runPos = count = symCount = selector = 0;    
+    runPos = count = symCount = selector = 0;
     while(true) {
         if (!(symCount--)) {
             symCount = GROUP_SIZE - 1;
@@ -55678,7 +55682,7 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
-/******/ 	
+/******/
 /******/ 	// The require function
 /******/ 	function __nccwpck_require__(moduleId) {
 /******/ 		// Check if module is in cache
@@ -55692,7 +55696,7 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
 /******/ 		};
-/******/ 	
+/******/
 /******/ 		// Execute the module function
 /******/ 		var threw = true;
 /******/ 		try {
@@ -55701,24 +55705,24 @@ module.exports = JSON.parse('[[[0,44],"disallowed_STD3_valid"],[[45,46],"valid"]
 /******/ 		} finally {
 /******/ 			if(threw) delete __webpack_module_cache__[moduleId];
 /******/ 		}
-/******/ 	
+/******/
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
 /******/ 	}
-/******/ 	
+/******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat */
-/******/ 	
+/******/
 /******/ 	if (typeof __nccwpck_require__ !== 'undefined') __nccwpck_require__.ab = __dirname + "/";
-/******/ 	
+/******/
 /************************************************************************/
-/******/ 	
+/******/
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = __nccwpck_require__(2754);
 /******/ 	module.exports = __webpack_exports__;
-/******/ 	
+/******/
 /******/ })()
 ;
 //# sourceMappingURL=index.js.map

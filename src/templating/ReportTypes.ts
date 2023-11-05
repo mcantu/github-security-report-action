@@ -89,7 +89,8 @@ export type AlertSummary = {
   rule: {
     id: string
     details?: CodeScanningRule
-  }
+  },
+  classifications: string[]
 }
 
 export type SeverityToAlertSummary = {

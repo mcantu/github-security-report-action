@@ -76,6 +76,10 @@ export type CodeScanningData = {
      */
     version: string;
   };
+  classifications: string[];
+  /**
+   * Classification of the alert. Example: 'Test', 'Library', 'Documentation', 'Generated'
+   */
 }
 
 export type AlertDismissal = {
@@ -159,5 +163,9 @@ export default class CodeScanningAlert {
 
   get toolVersion(): string | null {
     return this.data.tool ? this.data.tool.version : null;
+  }
+
+  get classifications(): string[] {
+    return this.data.classifications;
   }
 }
