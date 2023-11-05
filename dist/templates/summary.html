@@ -142,6 +142,19 @@
       <div class="col">
         <div class="card">
           <div class="card-header">
+            <h5 class="float-left">Total amount of alerts found from Test Code</h5>
+            <h5><span class="badge badge-light float-right">{{ scanning.classifications | length }}</span></h5>
+          </div>
+        </div>
+      </div>
+
+      <div class="col"></div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
             <h5 class="float-left">CWE Coverage</h5>
             <h5><span class="badge badge-light float-right">{{ scanning.cwe.cwes | length }}</span></h5>
           </div>
@@ -180,9 +193,9 @@
             <button type="button" class="btn btn-info">
               Low <span class="badge badge-light">{{ scanning.results.open.scans.low | length }}</span>
             </button>
-            
+
             <div>&nbsp;</div>
-            
+
             <button type="button" class="btn btn-danger">
               Error <span class="badge badge-light">{{ scanning.results.open.scans.error | length }}</span>
             </button>
@@ -221,9 +234,9 @@
             <button type="button" class="btn btn-info">
               Low <span class="badge badge-light">{{ scanning.results.closed.scans.low | length }}</span>
             </button>
-            
+
             <div>&nbsp;</div>
-            
+
             <button type="button" class="btn btn-danger">
               Error <span class="badge badge-light">{{ scanning.results.closed.scans.error | length }}</span>
             </button>
